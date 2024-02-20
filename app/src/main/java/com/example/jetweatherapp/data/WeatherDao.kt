@@ -45,5 +45,4 @@ interface WeatherDao {
 
     @Delete
     suspend fun deleteUnit(unit: UnitTemp)
-
 }

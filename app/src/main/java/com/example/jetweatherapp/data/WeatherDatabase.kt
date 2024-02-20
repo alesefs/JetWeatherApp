@@ -10,6 +10,7 @@ import com.example.jetweatherapp.model.UnitTemp
     version = 3,
     exportSchema = false
 )
+
 abstract class WeatherDatabase : RoomDatabase() {
     abstract fun weatherDao(): WeatherDao
 }
