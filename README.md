@@ -1,2 +1,2 @@
 # JetWeatherApp
-aplicativo de tempo usando Jetpack compose, Room e Hilt
+aplicativo de previsão do tempo usando Jetpack compose, Room e Hilt
