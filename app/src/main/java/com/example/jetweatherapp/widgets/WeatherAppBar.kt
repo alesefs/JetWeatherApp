@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -222,29 +223,36 @@ fun ShowSettingDropDownMenu(
                     showDialog.value = false
                 }) {
 
-                    Icon(
-                        imageVector = when (text) {
-                            "About" -> Icons.Default.Info
-                            "Favorites" -> Icons.Default.FavoriteBorder
-                            else -> Icons.Default.Settings
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                navController.navigate(
+                                    when (text) {
+                                        "About" -> WeatherScreens.AboutScreen.name
+                                        "Favorites" -> WeatherScreens.FavoriteScreen.name
+                                        else -> WeatherScreens.SettingsScreen.name
+                                    }
+                                )
+                            }
+                    ) {
+                        Icon(
+                            imageVector = when (text) {
+                                "About" -> Icons.Default.Info
+                                "Favorites" -> Icons.Default.FavoriteBorder
+                                else -> Icons.Default.Settings
 
-                        }, contentDescription = null,
-                        tint = Color.LightGray
-                    )
-                    
-                    Spacer(modifier = Modifier.padding(8.dp))
+                            }, contentDescription = null,
+                            tint = Color.LightGray
+                        )
 
-                    Text(text = text,
-                        modifier = Modifier.clickable {
-                            navController.navigate(
-                                when (text) {
-                                    "About" -> WeatherScreens.AboutScreen.name
-                                    "Favorites" -> WeatherScreens.FavoriteScreen.name
-                                    else -> WeatherScreens.SettingsScreen.name
-                                }
-                            )
-                        }, fontWeight = FontWeight.W300
-                    )
+                        Spacer(modifier = Modifier.padding(8.dp))
+
+                        Text(
+                            text = text,
+                            fontWeight = FontWeight.W300
+                        )
+                    }
                 }
             }
         }
