@@ -6,8 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.DropdownMenu
@@ -40,6 +42,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -135,14 +138,16 @@ fun WeatherAppBar(
                             .scale(0.9f)
                             .clickable {
                                 val dataList = title.split("-")
-                                favoriteViewModel.insertFavorite(
-                                    Favorite(
-                                        city = dataList[0], // city name
-                                        country = dataList[1] // country code
+                                favoriteViewModel
+                                    .insertFavorite(
+                                        Favorite(
+                                            city = dataList[0], // city name
+                                            country = dataList[1] // country code
+                                        )
                                     )
-                                ).run {
-                                    showIt.value = true
-                                }
+                                    .run {
+                                        showIt.value = true
+                                    }
                             },
                         tint = Color.Red.copy(alpha = 0.6f)
                     )
@@ -156,14 +161,16 @@ fun WeatherAppBar(
                             .scale(0.9f)
                             .clickable {
                                 val dataList = title.split("-")
-                                favoriteViewModel.insertFavorite(
-                                    Favorite(
-                                        city = dataList[0], // city name
-                                        country = dataList[1] // country code
+                                favoriteViewModel
+                                    .insertFavorite(
+                                        Favorite(
+                                            city = dataList[0], // city name
+                                            country = dataList[1] // country code
+                                        )
                                     )
-                                ).run {
-                                    showIt.value = true
-                                }
+                                    .run {
+                                        showIt.value = true
+                                    }
                             },
                         tint = Color.Red.copy(alpha = 0.6f)
                     )
@@ -224,6 +231,8 @@ fun ShowSettingDropDownMenu(
                         }, contentDescription = null,
                         tint = Color.LightGray
                     )
+                    
+                    Spacer(modifier = Modifier.padding(8.dp))
 
                     Text(text = text,
                         modifier = Modifier.clickable {
